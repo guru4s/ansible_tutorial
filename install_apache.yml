@@ -4,16 +4,11 @@
   become: true
   tasks:
 
-  - name: update reposytory
-    apt:
-      update_cache: yes
-
   - name: install apache2.deb
     apt:
-      name: apache2
+      name:
+        - apache2
+        - libapache2-mod-php
+      update_cache: yes
       state: latest
-
-  - name: install lib
-    apt:
-      name: libapache2-mod-php
-      state: latest
+    when: ansible_distribution == "Astra Linux"
